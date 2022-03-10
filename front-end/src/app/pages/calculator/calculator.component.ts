@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs/operators';
 import { Operations } from 'src/app/core/models';
 import { CalculatorService } from 'src/app/core/services/calculator.service';
@@ -23,12 +24,14 @@ export class CalculatorComponent implements OnInit {
 
   result = 0;
 
+  toastKey = 'calculator-toast';
+
   constructor(
     private calculatorService: CalculatorService,
+    private messageService: MessageService,
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit(): void { }
 
   clear(): void {
     this.equation = [];
@@ -48,7 +51,7 @@ export class CalculatorComponent implements OnInit {
     const previousInput = this.newOperation.split('')[this.newOperation.length - 1];
 
     if (previousInput === ')') {
-      alert('Selecione um operando');
+      this.notify('Selecione um operando');
       return;
     }
 
@@ -59,10 +62,21 @@ export class CalculatorComponent implements OnInit {
     this.newOperation = this.newOperation.slice(0, -1);
   }
 
+  notify(message: string): void {
+    this.messageService.clear();
+    this.messageService.add({
+      key: this.toastKey,
+      severity: 'warn',
+      detail: message,
+      summary: 'Aviso',
+      life: 4000,
+    });
+  }
+
   calculate(): void {
     this.validateIfThereIsAnResult();
     if (this.newOperation.includes('(') && !this.newOperation.includes(')')) {
-      alert('Termine sua operação com um parenteses');
+      this.notify('Termine sua operação com um parenteses');
       return;
     }
 
@@ -90,7 +104,7 @@ export class CalculatorComponent implements OnInit {
     }
 
     if (isNaN(parseInt(previousInput))) {
-      alert('Você só pode realizar uma operação se o último valor for um número');
+      this.notify('Você só pode realizar uma operação se o último valor for um número');
       return;
     }
 
@@ -123,27 +137,27 @@ export class CalculatorComponent implements OnInit {
       && !this.newOperation.includes(Operations.Divide)
       && !this.newOperation.includes(Operations.Subtract)
     ) {
-      alert('Deve haver algum operando dentro do parentêses');
+      this.notify('Deve haver algum operando dentro do parentêses');
       return;
     }
 
     if (this.newOperation.includes('(') && value === '(') {
-      alert('Você já possui um parenteses aberto');
+      this.notify('Você já possui um parenteses aberto');
       return;
     }
 
     if (this.newOperation.includes(')') && value === ')') {
-      alert('Selecione um operando ou finalize a equação');
+      this.notify('Selecione um operando ou finalize a equação');
       return;
     }
 
     if (value === ')' && isNaN(parseInt(previousInput))) {
-      alert('Você só pode fechar parenteses se o último valor for um número');
+      this.notify('Você só pode fechar parenteses se o último valor for um número');
       return;
     }
 
     if (value === ')' && !this.newOperation.includes('(')) {
-      alert('Abra parenteses antes de fechar');
+      this.notify('Abra parenteses antes de fechar');
       return;
     }
 

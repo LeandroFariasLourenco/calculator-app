@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "stylelint.vscode-stylelint",
+    "mikael.angular-beastcode",
+    "alexiv.vscode-angular2-files",
+    "angular.ng-template",
+    "johnpapa.angular2",
+    "dbaeumer.vscode-eslint",
+    "donjayamanne.githistory",
+    "mhutchie.git-graph",
+    "eamodio.gitlens",
+    "gitkraken.gitkraken-authentication",
+    "sibiraj-s.vscode-scss-formatter"
+  ]
+}

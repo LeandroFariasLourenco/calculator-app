@@ -1,0 +1,62 @@
+<div class="calculator container">
+  <div class="calculator-wrapper col-xs-12">
+    <div class="calculator-container col-xs-12">
+      <div class="calculator-container-header">
+        <div class="calculator-container-header-history">
+          <ng-container *ngIf="equation.length">
+            <ng-container *ngFor="let operation of equation">
+              {{ operation }}
+            </ng-container>
+          </ng-container>
+        </div>
+        <input class="calculator-container-header-display" [value]="result || newOperation" readonly />
+      </div>
+
+      <div class="calculator-container-body">
+        <div class="calculator-container-body-row">
+          <button class="calculator-container-body-row-button" (click)="clear()">C</button>
+          <button class="calculator-container-body-row-button operation" (click)="addParentheses('(')">(</button>
+          <button class="calculator-container-body-row-button operation" (click)="addParentheses(')')">)</button>
+          <button class="calculator-container-body-row-button" (click)="remove()">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+          </button>
+        </div>
+
+        <div class="calculator-container-body-row">
+          <button class="calculator-container-body-row-button" (click)="add('7')">7</button>
+          <button class="calculator-container-body-row-button" (click)="add('8')">8</button>
+          <button class="calculator-container-body-row-button" (click)="add('9')">9</button>
+          <button class="calculator-container-body-row-button operation"
+            (click)="addOperation(templateEnums.operations.Divide)">/</button>
+        </div>
+
+        <div class="calculator-container-body-row">
+          <button class="calculator-container-body-row-button" (click)="add('4')">4</button>
+          <button class="calculator-container-body-row-button" (click)="add('5')">5</button>
+          <button class="calculator-container-body-row-button" (click)="add('6')">6</button>
+          <button class="calculator-container-body-row-button operation"
+            (click)="addOperation(templateEnums.operations.Subtract)">-</button>
+        </div>
+
+        <div class="calculator-container-body-row">
+          <button class="calculator-container-body-row-button" (click)="add('1')">1</button>
+          <button class="calculator-container-body-row-button" (click)="add('2')">2</button>
+          <button class="calculator-container-body-row-button" (click)="add('3')">3</button>
+          <button class="calculator-container-body-row-button operation"
+            (click)="addOperation(templateEnums.operations.Add)">+</button>
+        </div>
+
+        <div class="calculator-container-body-row">
+          <button class="calculator-container-body-row-button col-xs-4" (click)="add('0')">0</button>
+          <button class="calculator-container-body-row-button col-xs-4 operation"
+            (click)="addOperation(templateEnums.operations.Multiply)">*</button>
+          <button class="calculator-container-body-row-button col-xs-4 operation" (click)="calculate()">=</button>
+        </div>
+      </div>
+    </div>
+
+    <a routerLink="/history" class="calculator-wrapper-leaderboards col-xs-12">
+      History
+    </a>
+  </div>
+</div>

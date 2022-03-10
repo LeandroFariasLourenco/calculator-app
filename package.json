@@ -1,0 +1,41 @@
+{
+  "name": "calculator-app",
+  "version": "1.0.0",
+  "description": "calculator-app root",
+  "scripts": {
+    "setup": "npx yarn install && cd front-end && npx yarn install && cd ../back-end && npx yarn install && cd ..",
+    "commit": "npx cz-customizable",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LeandroFariasLourenco/calculator-app.git"
+  },
+  "keywords": [
+    "calculator",
+    "angular",
+    "mariadb",
+    "node"
+  ],
+  "author": "Leandro Farias Lourenço",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LeandroFariasLourenco/calculator-app/issues"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "cz-customizable": "^6.3.0",
+    "@commitlint/cli": "^16.2.1",
+    "@commitlint/config-conventional": "^16.2.1"
+  },
+  "homepage": "https://github.com/LeandroFariasLourenco/calculator-app#readme",
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.19.1"
+  },
+  "config": {
+    "cz-customizable": {
+      "config": "./cz-config.js"
+    }
+  }
+}

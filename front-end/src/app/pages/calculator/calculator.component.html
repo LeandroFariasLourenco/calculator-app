@@ -1,64 +1,72 @@
-<div class="calculator grid">
-  <div class="grid">
-    <div class="col-12">
-      <div class="">
-        <ng-container *ngIf="equation.length">
-          <ng-container *ngFor="let operation of equation">
-            {{ operation }}
+<div class="wrapper">
+  <span class="p-float-label p-input-icon-left wrapper-input">
+    <i class="pi pi-user"></i>
+    <input pInputText [ngModel]="username" (ngModelChange)="updateUsername($event)" type="text">
+    <label>User</label>
+  </span>
+
+  <div class="calculator grid" [class.not-allowed]="!username" #calculator>
+    <div class="grid" [class.disabled]="!username">
+      <div class="col-12">
+        <div class="calculator-history">
+          <ng-container *ngIf="equation.length">
+            <ng-container *ngFor="let operation of equation">
+              <span>{{ operation }}</span>
+            </ng-container>
           </ng-container>
-        </ng-container>
-      </div>
-      <input class="col-12" [value]="result || newOperation" readonly />
-    </div>
-
-    <div class="col-12">
-      <div class="col-12 grid m-0 p-0">
-        <p-button styleClass="p-button-raised p-button-danger" class="col-3" (onClick)="clear()">C</p-button>
-        <p-button styleClass="p-button-raised p-button-secondary" class="col-3" (onClick)="addParentheses('(')">(
-        </p-button>
-        <p-button styleClass="p-button-raised p-button-secondary" class="col-3" (onClick)="addParentheses(')')">)
-        </p-button>
-        <p-button styleClass="p-button-raised p-button-danger" class="col-3" (onClick)="remove()">
-          <fa-icon [icon]="faArrowLeft"></fa-icon>
-        </p-button>
+        </div>
+        <input class="col-12 calculator-display" [value]="result || newOperation" readonly />
       </div>
 
-      <div class="col-12 grid m-0 p-0">
-        <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('7')">7</p-button>
-        <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('8')">8</p-button>
-        <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('9')">9</p-button>
-        <p-button styleClass="p-button-info" class="col-3" (onClick)="addOperation(templateEnums.operations.Divide)">
-          /</p-button>
-      </div>
+      <div class="col-12">
+        <div class="col-12 grid m-0 p-0">
+          <p-button styleClass="p-button-raised p-button-danger" class="col-3" (onClick)="clear()">C</p-button>
+          <p-button styleClass="p-button-raised p-button-help" class="col-3" (onClick)="addParentheses('(')">(
+          </p-button>
+          <p-button styleClass="p-button-raised p-button-help" class="col-3" (onClick)="addParentheses(')')">)
+          </p-button>
+          <p-button styleClass="p-button-raised p-button-danger" class="col-3" (onClick)="remove()">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+          </p-button>
+        </div>
 
-      <div class="col-12 grid m-0 p-0">
-        <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('4')">4</p-button>
-        <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('5')">5</p-button>
-        <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('6')">6</p-button>
-        <p-button styleClass="p-button-info" class="col-3" (onClick)="addOperation(templateEnums.operations.Subtract)">-
-        </p-button>
-      </div>
+        <div class="col-12 grid m-0 p-0">
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('7')">7</p-button>
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('8')">8</p-button>
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('9')">9</p-button>
+          <p-button styleClass="p-button-info" class="col-3" (onClick)="addOperation(templateEnums.operations.Divide)">
+            /</p-button>
+        </div>
 
-      <div class="col-12 grid m-0 p-0">
-        <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('1')">1</p-button>
-        <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('2')">2</p-button>
-        <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('3')">3</p-button>
-        <p-button styleClass="p-button-info" class="col-3" (onClick)="addOperation(templateEnums.operations.Add)">+
-        </p-button>
-      </div>
+        <div class="col-12 grid m-0 p-0">
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('4')">4</p-button>
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('5')">5</p-button>
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('6')">6</p-button>
+          <p-button styleClass="p-button-info" class="col-3"
+            (onClick)="addOperation(templateEnums.operations.Subtract)">-
+          </p-button>
+        </div>
 
-      <div class="col-12 grid m-0 p-0">
-        <p-button styleClass="p-button-secondary" class="col-4" (onClick)="add('0')">0</p-button>
-        <p-button styleClass="p-button-info" class="col-4" (onClick)="addOperation(templateEnums.operations.Multiply)">*
-        </p-button>
-        <p-button styleClass="p-button-info" class="col-4" (onClick)="calculate()">=</p-button>
+        <div class="col-12 grid m-0 p-0">
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('1')">1</p-button>
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('2')">2</p-button>
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('3')">3</p-button>
+          <p-button styleClass="p-button-info" class="col-3" (onClick)="addOperation(templateEnums.operations.Add)">+
+          </p-button>
+        </div>
+
+        <div class="col-12 grid m-0 p-0">
+          <p-button styleClass="p-button-secondary" class="col-4" (onClick)="add('0')">0</p-button>
+          <p-button styleClass="p-button-warning" class="col-4" (onClick)="calculate()">=</p-button>
+          <p-button styleClass="p-button-info" class="col-4"
+            (onClick)="addOperation(templateEnums.operations.Multiply)">*
+          </p-button>
+        </div>
       </div>
     </div>
   </div>
 
-  <a routerLink="/history">
-    History
-  </a>
+  <p-button iconPos="right" icon="pi pi-arrow-right" label="History" (onClick)="navigateToHistory()"></p-button>
 </div>
 
 <p-toast position="bottom-center" key="calculator-toast"></p-toast>

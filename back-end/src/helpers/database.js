@@ -4,7 +4,7 @@ const ERROR_CODES = {
   PROTOCOL_CONNECTION_LOST: 'PROTOCOL_CONNECTION_LOST',
   ER_CON_COUNT_ERROR: 'ER_CON_COUNT_ERROR',
   ECONNREFUSED: 'ECONNREFUSED',
-}
+};
 
 const pool = mariadb.createPool({
   host: process.env.DB_HOST,

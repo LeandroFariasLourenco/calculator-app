@@ -3,6 +3,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { IHistory } from 'src/app/core/models/IHistory';
 import { CalculatorService } from 'src/app/core/services/calculator.service';
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { ROUTES } from 'src/app/core/constants';
 
 @Component({
   selector: 'app-history',
@@ -18,7 +20,8 @@ export class HistoryComponent implements OnInit {
   faArrowLeft = faArrowLeft;
 
   constructor(
-    private calculatorService: CalculatorService
+    private calculatorService: CalculatorService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -32,6 +35,10 @@ export class HistoryComponent implements OnInit {
       .subscribe((history) => {
         this.history = [...history];
       }, console.log);
+  }
+
+  navigateToCalculator(): void {
+    this.router.navigate([ROUTES.CALCULATOR]);
   }
 
 }

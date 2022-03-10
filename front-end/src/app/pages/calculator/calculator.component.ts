@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs/operators';
+import { ROUTES } from 'src/app/core/constants';
 import { Operations } from 'src/app/core/models';
 import { CalculatorService } from 'src/app/core/services/calculator.service';
 
@@ -10,7 +12,9 @@ import { CalculatorService } from 'src/app/core/services/calculator.service';
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss']
 })
-export class CalculatorComponent implements OnInit {
+export class CalculatorComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('calculator') calculatorRef: ElementRef<HTMLDivElement>;
 
   faArrowLeft = faArrowLeft;
 
@@ -26,12 +30,33 @@ export class CalculatorComponent implements OnInit {
 
   toastKey = 'calculator-toast';
 
+  username = '';
+
   constructor(
     private calculatorService: CalculatorService,
     private messageService: MessageService,
+    private router: Router,
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.checkStoredUsername();
+  }
+
+  ngAfterViewInit(): void {
+    this.listenToHoverEvents();
+  }
+
+  checkStoredUsername(): void {
+    this.username = localStorage.getItem('username');
+  }
+
+  listenToHoverEvents(): void {
+    this.calculatorRef.nativeElement.onmouseover = () => {
+      if (!this.username) {
+        this.notify('Você precisa preencher seu nome para utilizar a calculadora.');
+      }
+    };
+  }
 
   clear(): void {
     this.equation = [];
@@ -73,6 +98,12 @@ export class CalculatorComponent implements OnInit {
     });
   }
 
+  updateUsername(username: string): void {
+    this.username = username;
+
+    localStorage.setItem('username', username);
+  }
+
   calculate(): void {
     this.validateIfThereIsAnResult();
     if (this.newOperation.includes('(') && !this.newOperation.includes(')')) {
@@ -83,11 +114,11 @@ export class CalculatorComponent implements OnInit {
     this.equation = [...this.equation, this.newOperation];
     this.calculatorService.calculate({
       operation: this.equation.join(''),
-      name: 'Leandro',
+      name: this.username,
     })
       .pipe(finalize(() => console.log()))
-      .subscribe((result) => {
-        this.result = +result;
+      .subscribe(({ equationResult }) => {
+        this.result = +equationResult;
         this.equation = [...this.equation, '=', `${this.result}`];
       }, console.log);
   }
@@ -162,6 +193,10 @@ export class CalculatorComponent implements OnInit {
     }
 
     this.newOperation += value;
+  }
+
+  navigateToHistory(): void {
+    this.router.navigate([ROUTES.HISTORY]);
   }
 
 }

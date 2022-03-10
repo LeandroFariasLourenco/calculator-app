@@ -1,4 +1,3 @@
-const express = require('express');
 const pool = require('../helpers/database');
 const router = require('./history');
 
@@ -11,7 +10,6 @@ router.post('/', async (request, response) => {
     const equationResult = String(eval(operation));
 
     const SQL_STATEMENT = 'insert into operations (name, equation, equation_result, created_at) values (?, ?, ?, ?)';
-    console.log(equationResult);
     await pool.query(SQL_STATEMENT, [
       name,
       operation,

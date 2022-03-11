@@ -27,6 +27,7 @@
         "no-shadow": "off",
         "@typescript-eslint/naming-convention": "off",
         "rxjs/no-ignored-error": "error",
+        "radix": "off",
         "@typescript-eslint/no-shadow": [
           "error"
         ],

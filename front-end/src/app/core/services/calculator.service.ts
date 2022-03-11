@@ -24,4 +24,13 @@ export class CalculatorService {
   calculate(calculateArgs: ICalculateArgs): Observable<ICalculateResponse> {
     return this.httpClient.post<ICalculateResponse>(`${this.url}/calculate`, calculateArgs);
   }
+
+  getHistoryWithFilter(filter: {
+    username: string;
+    date: string;
+    result: string;
+    id: number | null;
+  }): Observable<IHistory[]> {
+    return this.httpClient.post<IHistory[]>(`${this.url}/history/filter`, filter);
+  }
 }

@@ -1,10 +1,13 @@
 <div class="wrapper">
-  <p-button (onClick)="listHistory()" label="Refresh" icon="pi pi-refresh" iconPos="left"
-    styleClass="p-button-secondary" [style]="{ 'margin-bottom': '20px' }">
-  </p-button>
+  <div class="wrapper-header">
+    <p-button (onClick)="listHistory()" icon="pi pi-refresh" label="Refresh" iconPos="left"
+      styleClass="p-button-secondary">
+    </p-button>
 
+    <p-button (onClick)="alternarFiltrosAberto()" icon="pi pi-filter"></p-button>
+  </div>
   <div class="wrapper-table">
-    <p-table [value]="history" [loading]="loading" responsiveLayout="scroll">
+    <p-table [value]="history" [loading]="loading" responsiveLayout="scroll" scrollHeight="475px">
       <ng-template pTemplate="header">
         <tr>
           <th>#</th>
@@ -14,13 +17,20 @@
           <th>Created at</th>
         </tr>
       </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">
+            <span>It seems there are no results...</span>
+          </td>
+        </tr>
+      </ng-template>
       <ng-template pTemplate="body" let-row>
         <tr>
           <td>{{ row.id }}</td>
           <td>{{ row.name }}</td>
           <td>{{ row.equation }}</td>
           <td>{{ row.equation_result }}</td>
-          <td>{{ row.created_at | date : 'dd/MM/yyyy'}}</td>
+          <td>{{ row.created_at }}</td>
         </tr>
       </ng-template>
     </p-table>
@@ -29,3 +39,30 @@
   <p-button (onClick)="navigateToCalculator()" label="Go back" icon="pi pi-arrow-left" iconPos="left"
     [style]="{ 'margin-bottom': '20px' }"></p-button>
 </div>
+
+<p-sidebar [(visible)]="filtros.aberto" position="right">
+  <div class="filter-group p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text" style="width: 230px;" [(ngModel)]="filtros.username" placeholder="Search user">
+  </div>
+
+  <div class="filter-group">
+    <p-calendar [showOnFocus]="true" [showButtonBar]="true" [showIcon]="true" [style]="{ width: '230px' }"
+      placeholder="Filter by date" icon="pi pi-calendar" appendTo="body" [(ngModel)]="filtros.date" [maxDate]="maxDate">
+    </p-calendar>
+  </div>
+
+  <div class="filter-group p-input-icon-left">
+    <i class="pi pi-key"></i>
+    <input style="width: 230px;" pInputText placeholder="Filter by id" [(ngModel)]="filtros.id" type="text">
+  </div>
+
+  <div class="filter-group p-input-icon-left">
+    <i class="pi pi-stop"></i>
+    <input style="width: 230px" pInputText placeholder="Filter by result" [(ngModel)]="filtros.result" type="text">
+  </div>
+
+  <p-button label="Apply filters" styleClass="p-button-success" icon="pi pi-check" (onClick)="filtrar()"></p-button>
+</p-sidebar>
+
+<p-toast [key]="toastKey"></p-toast>

@@ -1,11 +1,18 @@
 <div class="wrapper">
   <span class="p-float-label p-input-icon-left wrapper-input">
     <i class="pi pi-user"></i>
-    <input pInputText [ngModel]="username" (ngModelChange)="updateUsername($event)" type="text">
+    <input pInputText [ngModel]="username" (ngModelChange)="updateUsername($event)" type="text" #usernameInputRef>
     <label>User</label>
   </span>
 
-  <div class="calculator grid" [class.not-allowed]="!username" #calculator>
+  <ng-container *ngIf="loadingResult">
+    <p-skeleton height="400px" width="320px"></p-skeleton>
+  </ng-container>
+
+  <div class="calculator grid" [ngClass]="{
+    hidden: loadingResult,
+    'not-allowed': !username
+  }" #calculator>
     <div class="grid" [class.disabled]="!username">
       <div class="col-12">
         <div class="calculator-history">
@@ -56,11 +63,12 @@
         </div>
 
         <div class="col-12 grid m-0 p-0">
-          <p-button styleClass="p-button-secondary" class="col-4" (onClick)="add('0')">0</p-button>
-          <p-button styleClass="p-button-warning" class="col-4" (onClick)="calculate()">=</p-button>
-          <p-button styleClass="p-button-info" class="col-4"
+          <p-button styleClass="p-button-secondary" class="col-3" (onClick)="add('0')">0</p-button>
+          <p-button styleClass="p-button-warning" class="col-3" (onClick)="calculate()">=</p-button>
+          <p-button styleClass="p-button-info" class="col-3"
             (onClick)="addOperation(templateEnums.operations.Multiply)">*
           </p-button>
+          <p-button styleClass="p-button-help" class="col-3" (onClick)="addFloatingPoint()">.</p-button>
         </div>
       </div>
     </div>
@@ -69,4 +77,4 @@
   <p-button iconPos="right" icon="pi pi-arrow-right" label="History" (onClick)="navigateToHistory()"></p-button>
 </div>
 
-<p-toast position="bottom-center" key="calculator-toast"></p-toast>
+<p-toast position="bottom-center" [key]="toastKey"></p-toast>

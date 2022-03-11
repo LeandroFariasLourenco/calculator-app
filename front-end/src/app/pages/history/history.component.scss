@@ -11,4 +11,20 @@
     max-width: 1200px;
     margin-bottom: 20px;
   }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+}
+
+.filter {
+  &-group {
+    margin-bottom: 20px;
+  }
 }

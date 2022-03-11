@@ -7,6 +7,7 @@ router.post('/', async (request, response) => {
       operation,
       name,
     } = request.body;
+    /* eslint-disable no-eval */
     const equationResult = String(eval(operation));
 
     const SQL_STATEMENT = 'insert into operations (name, equation, equation_result, created_at) values (?, ?, ?, ?)';
@@ -14,7 +15,7 @@ router.post('/', async (request, response) => {
       name,
       operation,
       equationResult,
-      new Date(),
+      new Date().toLocaleDateString('pt-BR'),
     ]);
     response.status(200).json({
       equationResult,

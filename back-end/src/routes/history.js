@@ -14,4 +14,30 @@ router.get('/', async (request, response) => {
   }
 });
 
+router.post('/filter', async (request, response) => {
+  try {
+    const {
+      id,
+      username,
+      result,
+      date,
+    } = request.body;
+    console.log(request.body);
+    const SQL_STATEMENT = `select * from operations
+    where id ${id ? '=' : '>'} ?
+    and name ${username ? '=' : '!='} ?
+    and equation_result ${result ? '=' : '>'} ?
+    and created_at ${date ? '=' : '!='} ?`;
+    const queryResult = await pool.query(SQL_STATEMENT, [
+      id ? `${id}` : '0',
+      username ? `${username}` : '""',
+      result ? `${result}` : '0',
+      date ? `${date}` : '""',
+    ]);
+    response.status(200).json(queryResult);
+  } catch (error) {
+    response.status(400).send(error.message);
+  }
+});
+
 module.exports = router;

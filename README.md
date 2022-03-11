@@ -16,7 +16,7 @@ Abra o terminal (_não precisa ser em nenhum lugar específico_) e execute o seg
   npm install -g @angular/cli@12.2.8
 ```
 
-## 2º Banco de dados
+## 3º Banco de dados
 **1º** [Baixe e instale o DBeaver](https://dbeaver.io/files/dbeaver-ce-latest-x86_64-setup.exe) (_Não é necessária nenhuma configuração adicional, apenas próximo e próximo_)
 
 **2º** Com o DBeaver instalado, abra-o e na janela esquerda denominada "Database Navigator", clique com o botão direito e selecione "Create" - "Connection".

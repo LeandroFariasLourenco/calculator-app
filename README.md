@@ -13,7 +13,7 @@ Antes de qualquer coisa, é necessário que haja uma instalação do **node** em
 **OBS**: Essa etapa não é necessária caso possua o **angular** instalado na sua máquina.
 Abra o terminal (_não precisa ser em nenhum lugar específico_) e execute o seguinte comando:
 ```
-  npm install -g @angular/cli@12.2.8
+  npm install -g @angular/cli
 ```
 
 ## 3º Banco de dados
@@ -32,7 +32,7 @@ Abra o terminal (_não precisa ser em nenhum lugar específico_) e execute o seg
 ![DBeaver-3](tutorials/DBeaver-4.png)
 
 **6º** Após a criação da conexão e o download do driver, basta realizar o 
-[download e instalação do mariadb](tutorials/mariadb-10.7.3-winx64.msi), o processo de instalação consiste em próximo, próximo.
+[download e instalação do mariadb](tutorials/mariadb-10.7.3-winx64.msi), o link redirecionará para uma página no github aonde você irá realizar o download. Na instação, apenas se atente com a senha, deve ser a mesma da conexão **root**.
 
 **7º** Com a conexão criada, e o mariadb instalado, basta clicar com o botão direito nela e selecionar "Connect".
 ![DBeaver-4](tutorials/DBeaver-5.png)
@@ -54,7 +54,7 @@ collation: **ascii_general_ci**
 ![DBeaver-4](tutorials/DBeaver-8.png)
 
 **11º** Uma nova janela será criada, e agora temos que copiar o arquivo sql do projeto.
-Basta navegar para o caminho exibido (_back-end/src/database.sql_) e copiar todo o conteúdo do arquivo.
+Basta navegar para o caminho exibido, no repositório: (_back-end/src/database.sql_) e copiar todo o conteúdo do arquivo.
 ![DBeaver-4](tutorials/DBeaver-9.png)
 
 **12º** Copie o conteúdo do arquivo dentro do SQL Editor do DBeaver e, selecione a query inteira para clicar com o botão direito e selecionar "Execute" "Execute SQL Query" 

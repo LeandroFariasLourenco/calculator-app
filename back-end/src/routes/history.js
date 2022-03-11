@@ -22,7 +22,6 @@ router.post('/filter', async (request, response) => {
       result,
       date,
     } = request.body;
-    console.log(request.body);
     const SQL_STATEMENT = `select * from operations
     where id ${id ? '=' : '>'} ?
     and name ${username ? '=' : '!='} ?

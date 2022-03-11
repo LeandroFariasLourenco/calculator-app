@@ -43,7 +43,7 @@ export class CalculatorComponent implements OnInit, AfterViewInit {
   ) { }
 
   @HostListener('document:keydown', ['$event'])
-  listenToKeyboardInput(event: any): void {
+  listenToKeyboardInput(event: KeyboardEvent): void {
     const keysToListen = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '+', '-', '*', '/', '(', ')', '=',
       '.',
       'Backspace',
@@ -75,11 +75,12 @@ export class CalculatorComponent implements OnInit, AfterViewInit {
       case ')':
         this.addParentheses(event.key);
         break;
+      case '=':
       case 'Enter':
         this.calculate();
         break;
       default:
-        this.addOperation(event.key);
+        this.addOperation(event.key as Operations);
     }
   }
 

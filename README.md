@@ -17,7 +17,6 @@ Abra o terminal (_não precisa ser em nenhum lugar específico_) e execute o seg
 ```
 
 ## 2º Banco de dados
-**OBS**: Essa etapa não é necessária caso possua o **DBeaver** e **Mariadb** instalado em sua máquina.
 **1º** [Baixe e instale o DBeaver](https://dbeaver.io/files/dbeaver-ce-latest-x86_64-setup.exe) (_Não é necessária nenhuma configuração adicional, apenas próximo e próximo_)
 
 **2º** Com o DBeaver instalado, abra-o e na janela esquerda denominada "Database Navigator", clique com o botão direito e selecione "Create" - "Connection".

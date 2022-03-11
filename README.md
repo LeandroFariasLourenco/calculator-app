@@ -41,9 +41,13 @@ Abra o terminal (_não precisa ser em nenhum lugar específico_) e execute o seg
 ![DBeaver-4](tutorials/DBeaver-6.png)
 
 **9º** É importante que o database seja criado com as mesmas opções mostradas abaixo.
+<br />
 O nome deve ser **calculator-app**;
+<br />
 charset: **ascii**
+<br />
 collation: **ascii_general_ci**
+<br />
 ![DBeaver-4](tutorials/DBeaver-7.png)
 
 **10º** Com o database criado, estamos quase no final. Selecione o database na pasta e com o botão direito, dentro do submenu, navegue para "SQL Editor" "Open SQL Editor".

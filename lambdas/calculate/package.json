@@ -1,8 +1,7 @@
 {
-  "name": "calculator-app",
+  "name": "calculate",
   "version": "1.0.0",
   "description": "calculator-app back end",
-  "main": "src/server.js",
   "scripts": {
     "build": "yarn clear && tsc && yarn install --prod --modules-folder ./build/node_modules",
     "clear": "rm -rf ./build",

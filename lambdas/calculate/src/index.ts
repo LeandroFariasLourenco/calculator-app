@@ -1,6 +1,6 @@
 import AWS from 'aws-sdk';
-import { APIGatewayEvent, Context } from 'aws-lambda';
-import { createConnection } from 'mysql2';
+import { Context } from 'aws-lambda';
+import { createConnection } from 'mysql2/promise';
 
 const getSecret = async (SecretId: string, region: string): Promise<{
   username: string;
@@ -44,24 +44,22 @@ export const lambdaHandler = async (event: any, context: Context) => {
     dbname: database,
   } = await getSecret('calculator-app-instance-secret', 'sa-east-1');
 
-  const connection = createConnection({
+  const connection = await createConnection({
     database,
     port,
     user,
     host,
     password
-  }).promise();
+  });
 
   try {
-    const [result, error] = await connection.query(
+    await connection.query(
       'insert into operations (name, equation, equation_result, created_at) values (?, ?, ?, ?)',
       [name, operation, equationResult, new Date().toLocaleDateString('pt-BR')]);
 
-
     return {
       statusCode: 200,
-      result,
-      error,
+      equationResult,
     };
   } catch (e) {
     return {

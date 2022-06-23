@@ -1,0 +1,30 @@
+{
+  "name": "calculator-app",
+  "version": "1.0.0",
+  "description": "calculator-app back end",
+  "main": "src/server.js",
+  "scripts": {
+    "build": "yarn clear && tsc && yarn install --prod --modules-folder ./build/node_modules",
+    "clear": "rm -rf ./build",
+    "test": "node -e \"(async () => console.log(await require('./build/index.js').lambdaHandler({})))()\""
+  },
+  "author": "Leandro Farias Lourenço",
+  "license": "MIT",
+  "dependencies": {
+    "aws-lambda": "^1.0.7",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25",
+    "mysql2": "^2.3.3",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.21",
+    "@types/aws-lambda": "^8.10.101",
+    "nodemon": "^2.0.15",
+    "eslint": "^7.32.0"
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.19.1"
+  }
+}

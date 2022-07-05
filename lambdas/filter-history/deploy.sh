@@ -1,5 +1,5 @@
 # Variables, change as needed
-functionName="list-history"
+functionName="filter-history"
 bucketName="calculator-app-assets-us-east-1"
 #############################
 

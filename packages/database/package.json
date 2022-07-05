@@ -1,0 +1,23 @@
+{
+  "name": "@my-packages/calculator-app",
+  "version": "1.0.4",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run co:login",
+    "co:login": "aws codeartifact login --tool npm --repository calculator-app --domain my-packages",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1167.0",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.21",
+    "typescript": "^4.7.4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,7 +1,7 @@
 {
-  "name": "calculate",
+  "name": "filter-history",
   "version": "1.0.0",
-  "description": "calculator-app back end",
+  "description": "",
   "scripts": {
     "build": "yarn clear && tsc && yarn install --prod --modules-folder ./build/node_modules",
     "clear": "rm -rf ./build",
@@ -14,9 +14,7 @@
   "dependencies": {
     "@my-packages/calculator-app": "^1.0.4",
     "aws-lambda": "^1.0.7",
-    "aws-sdk": "^2.1159.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25"
+    "aws-sdk": "^2.1159.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.101",

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "calculator-app root",
   "scripts": {
-    "setup": "npx yarn install && cd front-end && npx yarn install && cd ../back-end && npx yarn install && cd ..",
     "commit": "npx cz-customizable",
     "prepare": "husky install"
   },

@@ -52,6 +52,14 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@my-packages/calculator-app@^1.0.3":
+  version "1.0.3"
+  resolved "https://my-packages-440167089702.d.codeartifact.us-east-1.amazonaws.com:443/npm/calculator-app/@my-packages/calculator-app/-/calculator-app-1.0.3.tgz#f678362b090372614caa9d0374869ccc77ac6f2e"
+  integrity sha512-vdMuOl010VSxKf3xCZT/QaaJG1rO8X99LI6EPiY3ekh1CcAdsE25kWspIC8TAion2Tsd5YECeMohmyGrLuzPFQ==
+  dependencies:
+    aws-sdk "^2.1159.0"
+    mysql2 "^2.3.3"
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
